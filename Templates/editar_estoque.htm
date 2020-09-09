@@ -1,0 +1,32 @@
+{% extends "layout.htm"%}
+{% block content %}
+<div>
+    <h2 style="text-align: center; margin-top: 0.5cm;">{{titulo}}</h2><hr>
+</div>
+<div style="text-align: center;">
+    <form method="POST">
+        <table style="margin-left: auto; margin-right: auto;">
+            <thead>
+                <tr>
+                    <th>Nome do Produto</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th>Valor Comprado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for itens in Estoque.Pesquisar_ProdutoId(id) %}
+                <tr>
+                    <td><input name="nome" value="{{itens[1]}}"></td>
+                    <td><input name="quantidade" value="{{itens[2]}}"></td>
+                    <td><input name="preco" value="{{itens[3]}}"></td>
+                    <td><input name="preco_pg" value="{{itens[4]}}"></td>
+                    <td><a href="{{url_for('estoque')}}"><button  class="btn btn-success" type="submit">Salvar</button></a></td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </form>
+</div>
+
+{% endblock %}

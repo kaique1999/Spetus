@@ -1,0 +1,33 @@
+{% extends "layout.htm" %}
+{% block content %}
+<div style="text-align: center ; margin-top: 0.5cm;">
+    <h2>Comandas</h2>
+    <hr/>
+</div>
+<div style="text-align: center;">
+    <form method="POST">
+        <input name="nome" type="text">
+        <button class="btn btn-success" type="submit">Registrar</button>
+    </form>
+
+</div>
+<div class="table table-striped">
+    <table style="margin-left:  auto; margin-right: auto;">
+        <thead>
+            <tr>
+                <th>Comadas Registradas</th>
+                <th>Modificar</th>
+            <tr>
+        </thead>
+        <tbody style="text-align: center;">
+            <tr>
+                {% for nome in cliente %}
+                    {% if nome[2] == 0 %}
+                <td><a href="{{url_for('get_pedido', id=nome[0])}}">{{nome[1]}}</a></td>
+                <td><a href="{{url_for('Excluir_Comanda', id=nome[0])}}"><button class="btn btn-danger">Excluir</button></a></td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+</div>
+{% endblock %}

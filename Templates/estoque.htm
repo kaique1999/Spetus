@@ -1,0 +1,53 @@
+{% extends "layout.htm" %}
+{% block content %}
+<div class="container">
+    <h2 style="text-align: center; margin-top: 0.5cm;">Entrada de Estoque</h2><hr/>
+    <form method="POST">
+        <table style="text-align: center;margin-left: 3cm; margin-top: 0.7cm;">
+            <tr>
+                <th>Nome do Produto </th>
+                <th>Quantidade </th>
+                <th>Preço </th>
+                <th>Valor Comprado </th>
+            </tr>
+            <tr>
+                <td><input type="text" name="nome"> </td>
+                <td><input type="number" name="quantidade"> </td>
+                <td><input name="preco"> </td>
+                <td><input name="preco_pg"> </td>
+                <td><button class='btn btn-danger' type="reset">Limpar</button></td>
+                <td><button class='btn btn-success' type="submit">Salvar</button></td>
+            </tr>
+
+        </table>
+    </form>
+<br />
+<table class="table table-striped">
+    <thead style="text-align: center;">
+        <tr>
+            <th>Id Produtos</th>
+            <th>Nome do Produto</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Valor Comprado</th>
+            <th>Modificar</th>
+
+        </tr>
+    </thead>
+    <tr>
+        <tbody style="text-align: center;">
+            {% for produto in produtos %}
+            <td>{{produto[0]}}</td>
+            <td>{{produto[1]}}</td>
+            <td>{{produto[2]}}</td>
+            <td>R${{produto[3]}}</td>
+            <td>R${{produto[4]}}</td>
+            <td><a href="{{url_for('excluir', id=produto[0])}}"><button type="button"
+                        class="btn btn-danger">Excluir</button></a>
+            <a href="{{url_for('Editar_Estoque', id=produto[0])}}"><button type="button" class="btn btn-warning">Editar</button></a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'layout.htm'%}
+{% block content %}
+<div style="text-align: center; margin-top: 0.5cm;">
+    <h2>Histórico de Vendas</h2>
+</div>
+<div class="container-fluid">
+    <div class="table table-striped">
+        <table style="text-align: center;margin-left: auto; margin-right: auto;">
+            <thead>
+                <tr>
+                    <th>Id Pedido</th>
+                    <th>Nome Cliente</th>
+                    <th>Valor Total</th>
+                    <th>Data da Venda</th>
+                    <th>Modificar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for valores in Historico.Retornar_Historico() %}
+                <tr>
+                    <td>{{valores[0]}}</td>
+                    <td>{{valores[1]}}</td>
+                    <td>R${{valores[2]}}</td>
+                    <td>{{valores[3]}}</td>
+                    <td><a href="{{url_for('Delete_Venda', id=valores[0])}}"><button class="btn btn-danger">Excluir</button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    </div>
+</div>
+
+{% endblock %}
